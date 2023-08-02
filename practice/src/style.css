@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+* {
+  margin:0;
+  padding:0;
+}
+.container {
+  /* 设置容器的宽度 */
+  width: 1600px;
+  /* 设置容器的最大宽度，以防止内容溢出 */
+  max-width: 100%;
+
+  /* 居中容器在屏幕上 */
+  margin: 0 auto;
+  display:block;
+  /* 添加一些背景颜色和边框样式 */
+}
