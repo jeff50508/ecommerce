@@ -13,7 +13,11 @@ export const useStore = defineStore('main', {
         this.status += 1;
       }
     },
+    persist: {
+      storage: sessionStorage,
+      paths: ['someState'],
   },
+}
 });
 
 interface State{

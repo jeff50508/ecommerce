@@ -7,8 +7,16 @@ import cors from 'cors';
 // import Vue from 'vue';
 import router from './routers'
 import { createPinia } from 'pinia'
+import { createPersistedState } from "pinia-plugin-persistedstate";
 
 const pinia = createPinia()
+pinia.use(createPersistedState({
+
+'auto': true,
+
+'storage': localStorage
+
+}))
 
 // const app = express();
 // app.use(cors());
