@@ -1,69 +1,44 @@
 var express = require('express');
 var router = express.Router();
 var axios = require('axios')
+var cors = require('cors'); 
+var mysql = require('mysql2');
 /* GET home page. */
+router.use(cors());
+
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
-// 建立一個空陣列來保存多筆資料
 
-
-router.get('/express',async function(req,res,next) {
-  // API URL
-  const results = [];
-  console.log(req.query);
-  const { zip_code } = req.query;
-  const apiUrl = `https://api.opencube.tw/twzipcode/?zip_code=${zip_code}`;
+router.get('/products', function(req, res, next) {
+  console.log('efs')
   res.setHeader('Access-Control-Allow-Origin', '*');
-  // 發送 API 請求
-  // const express1 = await axios.get(apiUrl)
-  // console.log(express1.data)
-  // res.json(express1.data)// API URL
-  try {
-    // 發送 API 請求
-    const response = await axios.get(apiUrl);
-    console.log(response)
-    const data = response.data;
+  const connection = req.dbConnection;
+  connection.query('SELECT * FROM products_table', function(err, rows, fields) {
+    if (err) {
+      console.error('Error executing MySQL query: ' + err.stack);
+      return res.status(500).send('Error executing MySQL query');
+    }
+    // 將查詢結果傳遞到視圖以呈現
+    res.json({ products: rows });
+  });
+});
 
-    // 將取得的資料存入結果陣列
-    results.push(data);
+// Implement a new API route to update product quantity
+router.post('/products/:id/updateQuantity', function(req, res, next) {
+  const productId = req.params.id;
+  const quantity = req.body.quantity;
 
-    // 回傳整個結果陣列
-    res.json({ data: results });
-  } catch (error) {
-    console.error("API 請求錯誤", error);
-    res.status(500).json({ error: error.message });
-  }
+  const connection = req.dbConnection;
+  connection.query('UPDATE product_inventory SET quantity = ? WHERE id = ?', [quantity, productId], function(err, result) {
+    if (err) {
+      console.error('Error executing MySQL query: ' + err.stack);
+      return res.status(500).send('Error executing MySQL query');
+    }
 
-})
-
-router.get('/express1',async function(req,res,next) {
-  // API URL
-  // const results = [];
-  const apiUrl = `https://api.opencube.tw/twzipcode`;
-
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  // 發送 API 請求
-  // const express1 = await axios.get(apiUrl)
-  // console.log(express1.data)
-  // res.json(express1.data)// API URL
-  try {
-    // 發送 API 請求
-    const response = await axios.get(apiUrl);
-    console.log(response)
-    const data = response.data;
-    console.log(data)
-    // 將取得的資料存入結果陣列
-    // results.push(data);
-
-    // 回傳整個結果陣列
-    // res.json({ data: results });
-    res.json({data});
-  } catch (error) {
-    console.error("API 請求錯誤", error);
-    res.status(500).json({ error: error.message });
-  }
-
-})
+    // Return success message
+    res.json({ message: 'Product quantity updated successfully' });
+  });
+});
 
 module.exports = router;
