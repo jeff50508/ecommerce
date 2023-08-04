@@ -1,13 +1,13 @@
 import { defineStore } from 'pinia';
-import axios from 'axios';
 
 export const useStore = defineStore('main', {
+
   state: (): State => ({
     status: 'empty',
     products: [], // Add the products array to the state
     cart: [] as Product[],
-
   }),
+  
   getters: {
     // uniqueProducts(state) {
     //   const uniqueProductsMap = new Map();
@@ -38,7 +38,9 @@ export const useStore = defineStore('main', {
     // },
   },
   actions: {
-    
+    // updateProductCount(index: number, count: number) {
+    //   console.log(index);
+    // },
     // addProduct() {
     //   // 增加商品的邏輯，這裡假設我們每次增加商品數量為1
     //   if (typeof this.status === "string") {
@@ -47,33 +49,33 @@ export const useStore = defineStore('main', {
     //     this.status += 1;
     //   }
     // },
-    reduce(){
-      this.item1 += 1
-    },
-    plus(){
-      this.item1 += 1
-    },
-    addToCart(product: Product) {
-      // 假設購物車是一個陣列，將商品加入購物車
-      this.cart.push(product);
-      console.log(this.cart);
-      // 將購物車內容保存到 sessionStorage 中
-      // this.$pinia.persist({ path: 'cart', value: this.cart });
-    },
+    // reduce(){
+    //   this.item1 += 1
+    // },
+    // plus(){
+    //   this.item1 += 1
+    // },
+    // addToCart(product: Product) {
+    //   // 假設購物車是一個陣列，將商品加入購物車
+    //   this.cart.push(product);
+    //   console.log(this.cart);
+    //   // 將購物車內容保存到 sessionStorage 中
+    //   // this.$pinia.persist({ path: 'cart', value: this.cart });
+    // },
     persist: {
-      storage: sessionStorage,
+      storage: localStorage,
       paths: ['status','cart'],
     },
     
-    async fetchProducts() {
-      try {
-        const response = await axios.get('http://localhost:3000/products');
-        this.products = response.data;
-        return this.products
-      } catch (error) {
-        console.error('Error fetching products:', error);
-      }
-    },
+    // async fetchProducts() {
+    //   try {
+    //     const response = await axios.get('http://localhost:3000/products');
+    //     this.products = response.data;
+    //     return this.products
+    //   } catch (error) {
+    //     console.error('Error fetching products:', error);
+    //   }
+    // },
   },
 });
 
@@ -81,7 +83,6 @@ interface State {
   status: string | number;
   products: Product[]; // Add the 'products' property to the State interface
   cart: Product[];
-  // item1:[],
 }
 
 interface Product {
@@ -89,5 +90,8 @@ interface Product {
   image_url: string;
   product_name: string;
   price: number;
+  count1: number;
+  index: number;
+  mount:number;
 }
 

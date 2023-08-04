@@ -19,7 +19,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { useStore } from '../store';
-const props= defineProps(['productName','productImage','productPrice',])
+const props= defineProps(['productName','productImage','productPrice','productIndex'])
 const count = ref(0);
 const store = useStore();
 
@@ -30,7 +30,10 @@ function plus () {
   } else if (count.value < 10) {
     store.status += 1;
     count.value++;
-    }
+  }
+  store.products[props.productIndex].mount = count.value
+  console.log(store.products[props.productIndex].mount)
+  // store.updateProductCount(props.productIndex, count.value);
 }
 
 function reduce () {
@@ -44,6 +47,8 @@ function reduce () {
   if (count.value !== 0) {
     count.value--;
   }
+  store.products[props.productIndex].mount = count.value
+  // store.updateProductCount(props.productIndex, count.value);
 }
 
 </script>

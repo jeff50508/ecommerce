@@ -19,14 +19,7 @@
 
 <script setup lang="ts">
 import { useStore } from '../../../store/index.ts';
-    // export default {
-    // setup() {
-    //     const $store = useStore();
-    //     // return {
-    //     //     $store,
-    //     // };
-    // },
-    // };
+
     const $store = useStore();
 </script>
 
