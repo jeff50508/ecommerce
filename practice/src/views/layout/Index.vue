@@ -29,7 +29,7 @@
         const { username, password } = this;
         
         // 簡單檢查帳號和密碼是否不為空
-        if (username.trim() !== '' && password.trim() !== '') {
+        if (username !== '' && password !== '') {
           // 登入成功，導向 /products 頁面
           this.$router.push('/products');
         } else {

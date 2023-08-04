@@ -6,11 +6,7 @@ export const useStore = defineStore('main', {
     status: 'empty',
     products: [], // Add the products array to the state
     cart: [] as Product[],
-    item1:0,
-    item2:0,
-    item3:0,
-    item4:0,
-    item5:0,
+
   }),
   getters: {
     // uniqueProducts(state) {
