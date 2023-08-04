@@ -3,6 +3,127 @@
     <SideBar></SideBar>
     <div class="flex justify-center">
       <div class="grid grid-cols-3 gap-4 w-full">
+        <div v-for="product in store.products" :key="product.id" class="h-50 w-50 border p-4 flex flex-col">
+            <SingleProduct 
+              :product-image="product.image_path" 
+              :product-price="product.price" 
+              :product-name="product.product_name">
+            </SingleProduct>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+
+
+<script lang="ts" setup>
+
+import { useStore } from '../../store/index.ts';
+import SideBar from '../../views/layout/SideBar/SideBar.vue';
+import SingleProduct from '../../components/SingleProduct.vue'
+const store = useStore();
+store.plus();
+store.reduce();
+
+const sampleData = [
+  {
+    id:3 ,
+    image_path:"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-card-40-iphone14pro-202209?wid=340&hei=264&fmt=p-jpg&qlt=95&.v=1663611329492",
+    product_name:"grrge",
+    price:2333
+  },
+  {
+    id:3 ,
+    image_path:"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-1inch-deeppurple?wid=2560&hei=1440&fmt=p-jpg&qlt=80&.v=1663703840578",
+    product_name:"grrge",
+    price:2333
+  },
+  {
+    id:3 ,
+    image_path:"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-1inch-deeppurple?wid=2560&hei=1440&fmt=p-jpg&qlt=80&.v=1663703840578",
+    product_name:"grrge",
+    price:2333
+  },
+  {
+    id:3 ,
+    image_path:"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-1inch-deeppurple?wid=2560&hei=1440&fmt=p-jpg&qlt=80&.v=1663703840578",
+    product_name:"grrge",
+    price:2333
+  },
+  {
+    id:3 ,
+    image_path:"https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-1inch-deeppurple?wid=2560&hei=1440&fmt=p-jpg&qlt=80&.v=1663703840578",
+    product_name:"grrge",
+    price:2333
+  },];
+
+console.log("sampleData: ", sampleData);
+ 
+store.$patch({
+  'products': sampleData
+})
+
+// const addToCart = () => {
+
+//   store.addToCart(product);
+
+// }
+
+ 
+
+ 
+
+// export default {
+
+//   components: {
+
+//     SideBar,
+
+//   },
+
+//   setup() {
+
+//     const store = useStore();
+
+//     const cartItems = store.cart;
+
+//     // Fetch products on mount
+
+//     store.fetchProducts();
+
+ 
+
+//     function addToCart(product) {
+
+//       store.addToCart(product);
+
+//     }
+
+   
+
+//     return {
+
+//       addToCart,
+
+//       products: store.products,
+
+//     };
+
+//   },
+
+// };
+
+</script>
+
+<style lang="scss" scoped>
+/* Your CSS styles here */
+</style>
+<!-- <template>
+  <div>
+    <SideBar></SideBar>
+    <div class="flex justify-center">
+      <div class="grid grid-cols-3 gap-4 w-full">
         <div v-for="product in products" :key="product.id" class="h-50 w-50 border p-4 flex flex-col">
           <img class="h-30 w-30" :src="product.image_path" alt="Product Image" />
           <div class="flex justify-between h-full items-end">
@@ -36,7 +157,7 @@ export default {
     const store = useStore();
     const cartItems = store.cart;
     // Fetch products on mount
-    store.fetchProducts();
+    // store.fetchProducts();
 
     function addToCart(product) {
       store.addToCart(product);
@@ -44,7 +165,7 @@ export default {
     
     return {
       addToCart,
-      products: store.products.products,
+      products: store.products,
     };
   },
 };
@@ -52,4 +173,4 @@ export default {
 
 <style lang="scss" scoped>
 /* Your CSS styles here */
-</style>
+</style> -->

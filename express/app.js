@@ -3,18 +3,18 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var mysql = require('mysql2');
+// var mysql = require('mysql2');
 
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-var connection = mysql.createConnection({
-  host: '127.0.0.1',     // 資料庫主機名稱
-  user: 'root', // 資料庫用戶名稱
-  password: 'a656565999', // 資料庫密碼
-  database: 'products'   // 資料庫名稱
-});
+// var connection = mysql.createConnection({
+//   host: '127.0.0.1',     // 資料庫主機名稱
+//   user: 'root', // 資料庫用戶名稱
+//   password: 'a656565999', // 資料庫密碼
+//   database: 'products'   // 資料庫名稱
+// });
 
 var app = express();
 
@@ -30,10 +30,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(function(req, res, next) {
-  req.dbConnection = connection;
-  next();
-});
+// app.use(function(req, res, next) {
+//   req.dbConnection = connection;
+//   next();
+// });
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -57,12 +57,12 @@ app.use(function(err, req, res, next) {
 //   console.log('listening on 3000');
 // })
 // 建立連接
-connection.connect(function(err) {
-  if (err) {
-    console.error('Error connecting to MySQL database: ' + err.stack);
-    return;
-  }
-  console.log('Connected to MySQL database with ID: ' + connection.threadId);
-});
+// connection.connect(function(err) {
+//   if (err) {
+//     console.error('Error connecting to MySQL database: ' + err.stack);
+//     return;
+//   }
+//   console.log('Connected to MySQL database with ID: ' + connection.threadId);
+// });
 
 module.exports = app;
