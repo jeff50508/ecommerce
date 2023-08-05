@@ -1,7 +1,7 @@
 <template>
   <div class="flex h-full">
     <!-- 側邊欄 -->
-    <div :class="{  'w-64': isSidebarOpen }" class="mt-96 opacity-50 bg-gray-200 h-1/3 px-4 py-8 fixed top-0 right-0 transition-all duration-300">
+    <div :class="{  'w-64': isSidebarOpen }" class="rounded-l-3xl mt-96  bg-gray-200 h-1/3 px-4 py-8 fixed top-0 right-0 transition-all duration-300">
       <!-- 側邊欄內容 -->
       <!-- {{ $store.cart }} -->
       <!-- <button @click="handleCart"  style="background-color: #08c384;">
@@ -12,11 +12,17 @@
       <div v-for="(product, index) in products" :key="index">
         <div v-if="product.mount > 0">
           <p>{{ product.product_name }} ({{ product.mount }})</p>
-          <p>{{ product.price }}</p>
+          <p>${{ product.price * product.mount}}</p>
         </div>
         <!-- <button @click="cartStore.incrementQuantity(product)">+</button>
         <button @click="cartStore.decrementQuantity(product)">-</button> -->
       </div>
+      <router-link to = "/checkout">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-16 h-8 text-white border rounded bg-black">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+        </svg>
+
+      </router-link>
     </div>
     <!-- 主內容 -->
 

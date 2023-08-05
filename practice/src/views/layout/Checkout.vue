@@ -1,9 +1,9 @@
 <template>
   <div>
-      <div class="flex" v-for="(product, index) in products" :key="index">
-        <div v-if="product.mount > 0">
-          <img class="h-64 grid-cols-6" :src="product.image_path" alt="" />
-          <div class="grid-cols-4">
+      <div v-for="(product, index) in products" :key="index" class="flex justify-center ">
+        <div v-if="product.mount > 0" class="flex">
+          <img class="h-64 grid-cols-6 pr-96 " :src="product.image_path" alt="" />
+          <div class="block h-full">
             <h1>{{ product.product_name }}</h1>
             <p>數量:{{ product.mount }}</p>
             <p>價格:{{ product.price }}</p>
@@ -12,8 +12,10 @@
         <SideBar></SideBar>
       </div>
     </div>
-    <div>總計:{{calculateTotal()}}</div>
-    <button @click="clear()">結帳</button>
+    <div class="flex justify-center mt-16">
+      <div class="pr-24 text-2xl">總計:{{calculateTotal()}}</div>
+      <button class="bg-black text-white rounded-2xl w-24" @click="clear()"><h3 class="text-2xl">結帳</h3></button>
+    </div>
 </template>
 
 <script lang="ts" setup>

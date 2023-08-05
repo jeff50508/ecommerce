@@ -10,7 +10,7 @@
         <button @click="reduce()">
           -
         </button>
-        <p class="text-lg font-bold">{{ props.productPrice }}</p>
+        <p class="text-lg font-bold pl-6">${{ props.productPrice }}</p>
 
       </div>
     </div>
