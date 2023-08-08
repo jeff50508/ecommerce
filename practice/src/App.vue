@@ -7,9 +7,14 @@ import TopBar from "./components/TopBar.vue"
     <el-config-provider class="h-full">
         <div class="h-full container justify-center content-center items-center">
           <TopBar></TopBar>
-          <router-view></router-view>
+          <router-view v-slot="{Component}">
+            <KeepAlive>
+              <component :is="Component"/>
+            </KeepAlive>
+          </router-view>
         </div>
     </el-config-provider>
+
 </template>
 
 <style>
