@@ -1,13 +1,6 @@
 <script setup lang="ts">
-//   import {
-//   Check,
-//   Delete,
-//   Edit,
-//   Message,
-//   Search,
-//   Star,
-// } from '@element-plus/icons-vue'
-import TopBar from "./views/layout/TopBar/TopBar.vue"
+
+import TopBar from "./components/TopBar.vue"
 </script>
 
 <template>

@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { useStore } from '../../../store/index.ts';
+import { useStore } from '../store/index.ts';
 
     const $store = useStore();
 </script>

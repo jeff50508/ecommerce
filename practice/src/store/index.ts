@@ -62,10 +62,10 @@ export const useStore = defineStore('main', {
     //   // 將購物車內容保存到 sessionStorage 中
     //   // this.$pinia.persist({ path: 'cart', value: this.cart });
     // },
-    persist: {
-      storage: localStorage,
-      paths: ['status','cart'],
-    },
+    // persist: {
+    //   storage: localStorage,
+    //   paths: ['status','cart'],
+    // },
     
     // async fetchProducts() {
     //   try {
